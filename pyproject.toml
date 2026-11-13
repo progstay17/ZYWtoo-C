@@ -1,0 +1,27 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+exclude = [
+    "ref", "_cache", "__pycache__", "*.pyc",
+    # sampah sementara yang akan dihapus di Tahap 2 (bukan kode produk)
+    "patch_v2.py", "patch_v3.py", "_backup_*.py",
+    "test_logic.py", "test_gui.py",
+]
+
+[tool.ruff.lint]
+# Select kurasi: default (E4,E7,E9,F) + import sorting + modernisasi + kualitas kecil.
+# Sumber kebisingan non-bug (terlalu banyak cabang/argumen/statement) sengaja TIDAK dipilih.
+select = ["E4", "E7", "E9", "F", "I", "UP", "SIM", "C4", "RUF", "B"]
+# Dua aturan sengaja dinonaktifkan setelah ditinjau satu per satu (audit 2026-11-13):
+# - BLE001 (except Exception): dipakai untuk menampilkan error ke pengguna GUI
+#   (messagebox), mencatat string error ke laporan (check_mcap/scan_session), dan
+#   mencegah callback mematikan UI/job. Bukan penelan diam-diam.
+# - S110 (try/except pass): guard opsional yang aman gagal (reconfigure stdout,
+#   mtime session.json, dropdown Excel). Tidak ada efek samping kalau gagal.
+# - PLC0415 (import di dalam fungsi): sengaja untuk lazy-load modul berat
+#   (mediapipe/av/mcap) agar start CEPAT dan tidak mewarisi dependency berat.
+ignore = ["BLE001", "S110", "PLC0415"]

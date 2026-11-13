@@ -1,0 +1,33 @@
+# User data and local configuration
+zyw_config.json
+Excel/ZYW_Rekap.xlsx
+
+# Downloaded/runtime assets
+models/
+.venv/
+_cache/
+preview/
+hand_check/
+reports/
+logs/
+ZYW_organized/
+
+# Python/build/test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Temporary files and local screenshots
+*.tmp
+*.tmp.*
+_report_shot*.png
+
+# Local backup and test artifacts
+_uji/
+_uji_gui/
+ZYWtool_backup/
+
+# Local Claude Code settings
+.claude/
